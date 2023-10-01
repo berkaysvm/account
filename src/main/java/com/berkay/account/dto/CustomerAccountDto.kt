@@ -1,15 +1,12 @@
 package com.berkay.account.dto
 
-import com.berkay.account.model.Customer
-import com.berkay.account.model.Transaction
 import java.math.BigDecimal
 import java.time.LocalDateTime
 
-data class AccountDto (
+data class CustomerAccountDto(
         val id: String?,
-        val balance: BigDecimal?,
+        val balance: BigDecimal? = BigDecimal.ZERO,
         val creationDate: LocalDateTime?,
-        val customer: AccountCustomerDto?,
         val transactions: Set<TransactionDto>?
-        ){
+) {
 }
