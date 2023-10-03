@@ -4,6 +4,7 @@ import jakarta.persistence.*
 import org.hibernate.annotations.GenericGenerator
 import java.math.BigDecimal
 import java.time.LocalDateTime
+import java.util.HashSet
 
 @Entity
 data class Account(
@@ -19,11 +20,20 @@ data class Account(
         val customer: Customer?,
 
         @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-        val transaction : Set<Transaction>
+        val transaction : Set<Transaction> = HashSet()
 
 )
 {
-        override fun equals(other: Any?): Boolean {
+    constructor(balance: BigDecimal, creationDate: LocalDateTime, customer: Customer) : this(
+            id="",
+            customer= customer,
+            balance = balance,
+            creationDate = creationDate
+    ) {
+
+    }
+
+    override fun equals(other: Any?): Boolean {
                 if (this === other) return true
                 if (javaClass != other?.javaClass) return false
 
