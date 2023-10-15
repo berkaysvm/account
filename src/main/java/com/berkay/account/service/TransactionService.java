@@ -20,8 +20,8 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
-    protected Transaction initiateMoney(final Account account, BigDecimal amount)
+    protected Transaction initiateMoney( BigDecimal amount, final Account account)
     {
-        return transactionRepository.save(new Transaction());
+        return transactionRepository.save(new Transaction(amount,account));
     }
 }
